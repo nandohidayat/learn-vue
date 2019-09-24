@@ -3,7 +3,7 @@ const app = new Vue({
   data: {
     brand: "Vue Mastery",
     product: "Socks",
-    image: "./assets/vmSocks-green.jpg",
+    selectedVariant: 0,
     inStock: true,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],
     variants: [
@@ -24,8 +24,16 @@ const app = new Vue({
     addToCart: function() {
       this.cart++;
     },
-    updateProduct: function(variantImage) {
-      this.image = variantImage;
+    updateProduct: function(index) {
+      this.selectedVariant = index;
+    }
+  },
+  computed: {
+    title() {
+      return this.brand + " " + this.product;
+    },
+    image() {
+      return this.variants[this.selectedVariant].variantImage;
     }
   }
 });
